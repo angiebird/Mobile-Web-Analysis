@@ -1,0 +1,84 @@
+----------------
+senario: t-mobile_android web: adobe.com
+pktLoss: 113 pktCnt:+1094
+tcpTime: 10.493535 objTime: 17.383141 dnsTime: 3.128412
+tcpCnt: 59 objCnt: 53 dnsCnt: 5
+rttSum: 23.524275
+----------------
+senario: t-mobile_android web: amazon.com
+pktLoss: 131 pktCnt:+1233
+tcpTime: 11.709813 objTime: 20.261768 dnsTime: 8.511408
+tcpCnt: 68 objCnt: 60 dnsCnt: 9
+rttSum: 27.639792
+----------------
+senario: t-mobile_android web: aol.com
+pktLoss: 163 pktCnt:+2784
+tcpTime: 29.332011 objTime: 56.911598 dnsTime: 13.789596
+tcpCnt: 152 objCnt: 138 dnsCnt: 16
+rttSum: 69.318471
+----------------
+senario: t-mobile_android web: cnn.com
+pktLoss: 215 pktCnt:+3147
+tcpTime: 32.632122 objTime: 63.060962 dnsTime: 23.512177
+tcpCnt: 181 objCnt: 161 dnsCnt: 21
+rttSum: 79.743688
+----------------
+senario: t-mobile_android web: google.com
+pktLoss: 292 pktCnt:+3614
+tcpTime: 33.647971 objTime: 69.251586 dnsTime: 28.002543
+tcpCnt: 189 objCnt: 167 dnsCnt: 24
+rttSum: 82.678403
+----------------
+senario: t-mobile_android web: microsoft.com
+pktLoss: 351 pktCnt:+4253
+tcpTime: 42.372644 objTime: 86.294044 dnsTime: 30.825154
+tcpCnt: 234 objCnt: 206 dnsCnt: 28
+rttSum: 103.222148
+----------------
+senario: t-mobile_android web: qq.com
+pktLoss: 381 pktCnt:+5536
+tcpTime: 58.355738 objTime: 171.291563 dnsTime: 43.264368
+tcpCnt: 332 objCnt: 302 dnsCnt: 42
+rttSum: 144.704892
+----------------
+senario: t-mobile_android web: rakuten.co.jp
+pktLoss: 416 pktCnt:+6599
+tcpTime: 74.539689 objTime: 199.703125 dnsTime: 50.9102
+tcpCnt: 418 objCnt: 383 dnsCnt: 50
+rttSum: 181.973792
+----------------
+senario: t-mobile_android web: taobao.com
+pktLoss: 455 pktCnt:+7239
+tcpTime: 81.385247 objTime: 218.956325 dnsTime: 59.5224
+tcpCnt: 474 objCnt: 437 dnsCnt: 58
+rttSum: 200.957336
+----------------
+senario: t-mobile_android web: twitter.com
+pktLoss: 455 pktCnt:+7262
+tcpTime: 81.626864 objTime: 219.161965 dnsTime: 62.449667
+tcpCnt: 476 objCnt: 438 dnsCnt: 60
+rttSum: 201.404586
+----------------
+senario: t-mobile_firefox web: adobe.com
+pktLoss: 595 pktCnt:+8093
+tcpTime: 87.963797 objTime: 237.53864 dnsTime: 63.002221
+tcpCnt: 497 objCnt: 496 dnsCnt: 80
+rttSum: 223.294713
+----------------
+senario: t-mobile_firefox web: amazon.com
+pktLoss: 687 pktCnt:+8781
+tcpTime: 92.982584 objTime: 252.838282 dnsTime: 63.200055
+tcpCnt: 520 objCnt: 545 dnsCnt: 98
+rttSum: 243.716468
+----------------
+senario: t-mobile_firefox web: aol.com
+pktLoss: 820 pktCnt:+9867
+tcpTime: 99.476526 objTime: 295.454744 dnsTime: 65.47023
+tcpCnt: 562 objCnt: 610 dnsCnt: 133
+rttSum: 308.715767
+----------------
+senario: t-mobile_firefox web: cnn.com
+pktLoss: 1089 pktCnt:+11339
+tcpTime: 109.470826 objTime: 331.062944 dnsTime: 68.219666
+tcpCnt: 610 objCnt: 716 dnsCnt: 175
+rttSum: 350.986009
