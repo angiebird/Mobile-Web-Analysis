@@ -6,79 +6,259 @@ tcpCnt: 59 objCnt: 53 dnsCnt: 5
 rttSum: 23.524275
 ----------------
 senario: t-mobile_android web: amazon.com
-pktLoss: 131 pktCnt:+1233
-tcpTime: 11.709813 objTime: 20.261768 dnsTime: 8.511408
-tcpCnt: 68 objCnt: 60 dnsCnt: 9
-rttSum: 27.639792
+pktLoss: 18 pktCnt:+139
+tcpTime: 1.216278 objTime: 2.878627 dnsTime: 5.382996
+tcpCnt: 9 objCnt: 7 dnsCnt: 4
+rttSum: 4.115517
 ----------------
 senario: t-mobile_android web: aol.com
-pktLoss: 163 pktCnt:+2784
-tcpTime: 29.332011 objTime: 56.911598 dnsTime: 13.789596
-tcpCnt: 152 objCnt: 138 dnsCnt: 16
-rttSum: 69.318471
+pktLoss: 32 pktCnt:+1551
+tcpTime: 17.622198 objTime: 36.64983 dnsTime: 5.278188
+tcpCnt: 84 objCnt: 78 dnsCnt: 7
+rttSum: 41.678679
 ----------------
 senario: t-mobile_android web: cnn.com
-pktLoss: 215 pktCnt:+3147
-tcpTime: 32.632122 objTime: 63.060962 dnsTime: 23.512177
-tcpCnt: 181 objCnt: 161 dnsCnt: 21
-rttSum: 79.743688
+pktLoss: 52 pktCnt:+363
+tcpTime: 3.300111 objTime: 6.149364 dnsTime: 9.722581
+tcpCnt: 29 objCnt: 23 dnsCnt: 5
+rttSum: 10.425217
 ----------------
 senario: t-mobile_android web: google.com
-pktLoss: 292 pktCnt:+3614
-tcpTime: 33.647971 objTime: 69.251586 dnsTime: 28.002543
-tcpCnt: 189 objCnt: 167 dnsCnt: 24
-rttSum: 82.678403
+pktLoss: 77 pktCnt:+467
+tcpTime: 1.015849 objTime: 6.190624 dnsTime: 4.490366
+tcpCnt: 8 objCnt: 6 dnsCnt: 3
+rttSum: 2.934715
 ----------------
 senario: t-mobile_android web: microsoft.com
-pktLoss: 351 pktCnt:+4253
-tcpTime: 42.372644 objTime: 86.294044 dnsTime: 30.825154
-tcpCnt: 234 objCnt: 206 dnsCnt: 28
-rttSum: 103.222148
+pktLoss: 59 pktCnt:+639
+tcpTime: 8.724673 objTime: 17.042458 dnsTime: 2.822611
+tcpCnt: 45 objCnt: 39 dnsCnt: 4
+rttSum: 20.543745
 ----------------
 senario: t-mobile_android web: qq.com
-pktLoss: 381 pktCnt:+5536
-tcpTime: 58.355738 objTime: 171.291563 dnsTime: 43.264368
-tcpCnt: 332 objCnt: 302 dnsCnt: 42
-rttSum: 144.704892
+pktLoss: 30 pktCnt:+1283
+tcpTime: 15.983094 objTime: 84.997519 dnsTime: 12.439214
+tcpCnt: 98 objCnt: 96 dnsCnt: 14
+rttSum: 41.482744
 ----------------
 senario: t-mobile_android web: rakuten.co.jp
-pktLoss: 416 pktCnt:+6599
-tcpTime: 74.539689 objTime: 199.703125 dnsTime: 50.9102
-tcpCnt: 418 objCnt: 383 dnsCnt: 50
-rttSum: 181.973792
+pktLoss: 35 pktCnt:+1063
+tcpTime: 16.183951 objTime: 28.411562 dnsTime: 7.645832
+tcpCnt: 86 objCnt: 81 dnsCnt: 8
+rttSum: 37.2689
 ----------------
 senario: t-mobile_android web: taobao.com
-pktLoss: 455 pktCnt:+7239
-tcpTime: 81.385247 objTime: 218.956325 dnsTime: 59.5224
-tcpCnt: 474 objCnt: 437 dnsCnt: 58
-rttSum: 200.957336
+pktLoss: 39 pktCnt:+640
+tcpTime: 6.845558 objTime: 19.2532 dnsTime: 8.6122
+tcpCnt: 56 objCnt: 54 dnsCnt: 8
+rttSum: 18.983544
 ----------------
 senario: t-mobile_android web: twitter.com
-pktLoss: 455 pktCnt:+7262
-tcpTime: 81.626864 objTime: 219.161965 dnsTime: 62.449667
-tcpCnt: 476 objCnt: 438 dnsCnt: 60
-rttSum: 201.404586
+pktLoss: 0 pktCnt:+23
+tcpTime: 0.241617 objTime: 0.20564 dnsTime: 2.927267
+tcpCnt: 2 objCnt: 1 dnsCnt: 2
+rttSum: 0.44725
 ----------------
 senario: t-mobile_firefox web: adobe.com
-pktLoss: 595 pktCnt:+8093
-tcpTime: 87.963797 objTime: 237.53864 dnsTime: 63.002221
-tcpCnt: 497 objCnt: 496 dnsCnt: 80
-rttSum: 223.294713
+pktLoss: 140 pktCnt:+831
+tcpTime: 6.336933 objTime: 18.376675 dnsTime: 0.552554
+tcpCnt: 21 objCnt: 58 dnsCnt: 20
+rttSum: 21.890127
 ----------------
 senario: t-mobile_firefox web: amazon.com
-pktLoss: 687 pktCnt:+8781
-tcpTime: 92.982584 objTime: 252.838282 dnsTime: 63.200055
-tcpCnt: 520 objCnt: 545 dnsCnt: 98
-rttSum: 243.716468
+pktLoss: 92 pktCnt:+688
+tcpTime: 5.018787 objTime: 15.299642 dnsTime: 0.197834
+tcpCnt: 23 objCnt: 49 dnsCnt: 18
+rttSum: 20.421755
 ----------------
 senario: t-mobile_firefox web: aol.com
-pktLoss: 820 pktCnt:+9867
-tcpTime: 99.476526 objTime: 295.454744 dnsTime: 65.47023
-tcpCnt: 562 objCnt: 610 dnsCnt: 133
-rttSum: 308.715767
+pktLoss: 133 pktCnt:+1086
+tcpTime: 6.493942 objTime: 42.616462 dnsTime: 2.270175
+tcpCnt: 42 objCnt: 65 dnsCnt: 35
+rttSum: 64.999299
 ----------------
 senario: t-mobile_firefox web: cnn.com
-pktLoss: 1089 pktCnt:+11339
-tcpTime: 109.470826 objTime: 331.062944 dnsTime: 68.219666
-tcpCnt: 610 objCnt: 716 dnsCnt: 175
-rttSum: 350.986009
+pktLoss: 269 pktCnt:+1472
+tcpTime: 9.9943 objTime: 35.6082 dnsTime: 2.749436
+tcpCnt: 48 objCnt: 106 dnsCnt: 42
+rttSum: 42.270242
+----------------
+senario: t-mobile_firefox web: google.com
+pktLoss: 102 pktCnt:+390
+tcpTime: 2.7348 objTime: 10.466345 dnsTime: 1.331357
+tcpCnt: 8 objCnt: 12 dnsCnt: 22
+rttSum: 9.304611
+----------------
+senario: t-mobile_firefox web: microsoft.com
+pktLoss: 79 pktCnt:+676
+tcpTime: 3.505356 objTime: 17.189217 dnsTime: 0.902109
+tcpCnt: 21 objCnt: 52 dnsCnt: 40
+rttSum: 18.958546
+----------------
+senario: t-mobile_firefox web: qq.com
+pktLoss: 158 pktCnt:+1178
+tcpTime: 8.029486 objTime: 32.634912 dnsTime: 4.115289
+tcpCnt: 46 objCnt: 100 dnsCnt: 32
+rttSum: 29.882565
+----------------
+senario: t-mobile_firefox web: rakuten.co.jp
+pktLoss: 289 pktCnt:+1686
+tcpTime: 9.687227 objTime: 68.214611 dnsTime: 3.410223
+tcpCnt: 47 objCnt: 287 dnsCnt: 42
+rttSum: 66.622315
+----------------
+senario: t-mobile_firefox web: taobao.com
+pktLoss: 260 pktCnt:+1845
+tcpTime: 14.517751 objTime: 72.746766 dnsTime: 2.87728
+tcpCnt: 57 objCnt: 166 dnsCnt: 40
+rttSum: 56.939613
+----------------
+senario: t-mobile_firefox web: twitter.com
+pktLoss: 112 pktCnt:+894
+tcpTime: 5.150891 objTime: 33.091008 dnsTime: 0.674654
+tcpCnt: 15 objCnt: 13 dnsCnt: 26
+rttSum: 9.915678
+----------------
+senario: verizon_firefox web: amazon.com
+pktLoss: 66 pktCnt:+616
+tcpTime: 4.231183 objTime: 36.640516 dnsTime: 6.399755
+tcpCnt: 21 objCnt: 33 dnsCnt: 18
+rttSum: 24.882552
+----------------
+senario: verizon_firefox web: cnn.com
+pktLoss: 308 pktCnt:+1920
+tcpTime: 50.740107 objTime: 228.789167 dnsTime: 58.63847
+tcpCnt: 79 objCnt: 108 dnsCnt: 79
+rttSum: 216.814465
+----------------
+senario: verizon_firefox web: google.com
+pktLoss: 58 pktCnt:+319
+tcpTime: 2.693059 objTime: 16.622363 dnsTime: 1.434356
+tcpCnt: 7 objCnt: 10 dnsCnt: 6
+rttSum: 13.26626
+----------------
+senario: verizon_firefox web: microsoft.com
+pktLoss: 84 pktCnt:+787
+tcpTime: 21.146191 objTime: 62.829613 dnsTime: 28.507232
+tcpCnt: 35 objCnt: 50 dnsCnt: 43
+rttSum: 68.28992
+----------------
+senario: verizon_firefox web: twitter.com
+pktLoss: 101 pktCnt:+812
+tcpTime: 10.701185 objTime: 21.72856 dnsTime: 10.056749
+tcpCnt: 16 objCnt: 13 dnsCnt: 24
+rttSum: 19.379234
+----------------
+senario: wired_android web: adobe.com
+pktLoss: 207 pktCnt:+1038
+tcpTime: 3.882023 objTime: 5.722402 dnsTime: 0.685461
+tcpCnt: 63 objCnt: 54 dnsCnt: 9
+rttSum: 7.911924
+----------------
+senario: wired_android web: amazon.com
+pktLoss: 16 pktCnt:+117
+tcpTime: 0.124639 objTime: 0.665575 dnsTime: 3.767106
+tcpCnt: 9 objCnt: 7 dnsCnt: 5
+rttSum: 0.343676
+----------------
+senario: wired_android web: cnn.com
+pktLoss: 75 pktCnt:+457
+tcpTime: 0.574978 objTime: 0.788943 dnsTime: 0.318052
+tcpCnt: 29 objCnt: 23 dnsCnt: 6
+rttSum: 1.548719
+----------------
+senario: wired_android web: google.com
+pktLoss: 8 pktCnt:+8
+tcpTime: 0.0 objTime: 0.0 dnsTime: 0.0
+tcpCnt: 0 objCnt: 0 dnsCnt: 0
+rttSum: 0
+----------------
+senario: wired_android web: microsoft.com
+pktLoss: 47 pktCnt:+540
+tcpTime: 6.171791 objTime: 12.392258 dnsTime: 1.364997
+tcpCnt: 46 objCnt: 39 dnsCnt: 7
+rttSum: 13.224909
+----------------
+senario: wired_android web: qq.com
+pktLoss: 43 pktCnt:+992
+tcpTime: 24.05508 objTime: 31.57688 dnsTime: 10.370199
+tcpCnt: 82 objCnt: 77 dnsCnt: 16
+rttSum: 49.374347
+----------------
+senario: wired_android web: rakuten.co.jp
+pktLoss: 58 pktCnt:+1205
+tcpTime: 3.157612 objTime: 28.998971 dnsTime: 5.012726
+tcpCnt: 89 objCnt: 82 dnsCnt: 14
+rttSum: 5.731762
+----------------
+senario: wired_android web: taobao.com
+pktLoss: 142 pktCnt:+569
+tcpTime: 45.922049 objTime: 34.754981 dnsTime: 5.38541
+tcpCnt: 62 objCnt: 49 dnsCnt: 9
+rttSum: 79.686025
+----------------
+senario: wired_android web: twitter.com
+pktLoss: 0 pktCnt:+13
+tcpTime: 0.160657 objTime: 0.087407 dnsTime: 0.004881
+tcpCnt: 2 objCnt: 1 dnsCnt: 2
+rttSum: 0.234695
+----------------
+senario: wired_firefox web: adobe.com
+pktLoss: 135 pktCnt:+928
+tcpTime: 1.167834 objTime: 5.502509 dnsTime: 1.680071
+tcpCnt: 21 objCnt: 60 dnsCnt: 18
+rttSum: 5.554526
+----------------
+senario: wired_firefox web: amazon.com
+pktLoss: 99 pktCnt:+796
+tcpTime: 0.123437 objTime: 1.060412 dnsTime: 1.751264
+tcpCnt: 26 objCnt: 77 dnsCnt: 21
+rttSum: 0.464328
+----------------
+senario: wired_firefox web: aol.com
+pktLoss: 193 pktCnt:+1439
+tcpTime: 2.610305 objTime: 8.923312 dnsTime: 0.11327
+tcpCnt: 38 objCnt: 66 dnsCnt: 63
+rttSum: 7.782804
+----------------
+senario: wired_firefox web: cnn.com
+pktLoss: 221 pktCnt:+1616
+tcpTime: 0.803529 objTime: 5.168214 dnsTime: 1.788192
+tcpCnt: 46 objCnt: 116 dnsCnt: 97
+rttSum: 2.621477
+----------------
+senario: wired_firefox web: google.com
+pktLoss: 61 pktCnt:+389
+tcpTime: 0.131371 objTime: 0.605371 dnsTime: 0.008105
+tcpCnt: 8 objCnt: 13 dnsCnt: 32
+rttSum: 0.516028
+----------------
+senario: wired_firefox web: microsoft.com
+pktLoss: 72 pktCnt:+693
+tcpTime: 1.378679 objTime: 4.503431 dnsTime: 0.995562
+tcpCnt: 23 objCnt: 52 dnsCnt: 41
+rttSum: 4.659342
+----------------
+senario: wired_firefox web: qq.com
+pktLoss: 132 pktCnt:+1276
+tcpTime: 15.086223 objTime: 38.522019 dnsTime: 1.498538
+tcpCnt: 56 objCnt: 100 dnsCnt: 52
+rttSum: 42.042697
+----------------
+senario: wired_firefox web: rakuten.co.jp
+pktLoss: 561 pktCnt:+2814
+tcpTime: 3.845548 objTime: 15.997801 dnsTime: 0.67922
+tcpCnt: 48 objCnt: 282 dnsCnt: 40
+rttSum: 14.125286
+----------------
+senario: wired_firefox web: taobao.com
+pktLoss: 483 pktCnt:+2442
+tcpTime: 31.025442 objTime: 116.009527 dnsTime: 3.307248
+tcpCnt: 91 objCnt: 149 dnsCnt: 69
+rttSum: 137.668992
+----------------
+senario: wired_firefox web: twitter.com
+pktLoss: 323 pktCnt:+718
+tcpTime: 0.436586 objTime: 0.731467 dnsTime: 0.024839
+tcpCnt: 10 objCnt: 12 dnsCnt: 21
+rttSum: 0.906961

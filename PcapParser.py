@@ -167,7 +167,7 @@ class EventParser:
             #print getCnt
         elif("tcp" in pkt and "SYN" in pkt["tcp"].flags):
             self.type = "OpenTCP"
-        elif("dns" in pkt):
+        elif("dns" in pkt and "ip" in pkt):
             self.type = "DNS"
         else:
             self.type = False
@@ -180,11 +180,13 @@ class EventParser:
     def getId(pkt):
         if("dns" in pkt):
             return pkt["dns"].id
-        elif("ip" in pkt):
+        elif("ip" in pkt and "tcp" in pkt): # we only care tcp packets
             src = pkt["ip"].src
-            srcport = pkt["tcp"].tcp_srcport
             dst = pkt["ip"].dst
+
+            srcport = pkt["tcp"].tcp_srcport
             dstport = pkt["tcp"].tcp_dstport
+
             if(src < dst):
                 return src+":"+str(srcport)+"<->"+dst+":"+str(dstport)
             else:
@@ -229,6 +231,8 @@ class EthParser:
         attr = xmlObj.attrib
         ls = attr['showname'].split(',')
         self.tag = xmlObj.tag
+        if(len(ls) < 3):
+            print ls
         self.protocol = ls[0]
         self.src = ls[1].split()[1]
         self.dst = ls[2].split()[1]
@@ -378,11 +382,8 @@ class DnsParser:
 
 
 class PcapParser:
-    halfEventMap = {}
-    fullEventQueue = []
     parserDic = {
                 'ip': IpParser,
-                'eth': EthParser,
                 'tcp': TcpParser,
                 'udp': UdpParser,
                 'frame': FrameParser,
@@ -390,6 +391,8 @@ class PcapParser:
                 'dns': DnsParser,
                  }
     def __init__(self, fileName):
+        self.halfEventMap = {}
+        self.fullEventQueue = []
         self.tree = ET.parse(fileName)
         self.root = self.tree.getroot()
         self.xmlPktLs = []
@@ -479,21 +482,14 @@ class PcapParser:
 
         #print len(self.halfEventMap)
 
-
-
-
-
-
-
-
 if __name__ == "__main__":
-    #psr = PcapParser("t-mobile_android_twitter.com_1329408284.32.xml")
+    #psr = PcapParser("./xml/t-mobile_firefox_rakuten.co.jp_1329415410.54.xml")
     xmlLs = os.listdir("./xml")
     senarioMap = {}
     log = open("log.txt", 'w')
-    for xml in xmlLs:
+    for idx, xml in enumerate(xmlLs):
         if xml.endswith("xml"):
-            print xml
+            print idx, xml
             ls = xml.split("_")
             senario = ls[0]+"_"+ls[1]
             web = ls[2]
