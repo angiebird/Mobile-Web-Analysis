@@ -2,11 +2,8 @@ import xml.etree.ElementTree as ET
 import collections
 import os
 import pickle
+import numpy as np
 
-
-#getCnt = 0
-#eventDetailLog = open("eventDetailLog.txt", 'w')
-#summaryLog = open("summaryLog.txt", 'w')
 
 class EventParser:
     def _NewObj(self, pkt): # compose done: return True, not yet: return False
@@ -19,6 +16,11 @@ class EventParser:
             self.seqL = pkt["tcp"].tcp_seq
             self.ackL = pkt["tcp"].tcp_ack
             self.lenL = pkt["tcp"].tcp_len
+
+            self.winLs    = []
+            self.winFrame = []
+            self.seqLs    = []
+            self.seqFrame = []
 
             self.seqR = 1
             self.ackR = 1
@@ -36,10 +38,16 @@ class EventParser:
                     #print "ackR:", self.ackR, "seqL:", self.seqL, "lenL:", self.lenL
                     #print self.id
                     self.pktLoss += 1
+                self.winLs.append(pkt["tcp"].tcp_win)
+                self.winFrame.append(pkt["frame"].time_relative)
             else:
                 self.seqR = pkt["tcp"].tcp_seq
                 self.ackR = pkt["tcp"].tcp_ack
                 self.lenR = pkt["tcp"].tcp_len
+
+                self.seqLs.append(self.seqR)
+                self.seqFrame.append(pkt["frame"].time_relative)
+
                 if self.ackL >= self.seqR and self.ackL <= self.seqR + self.lenR:
                     pass
                 else:
@@ -50,7 +58,7 @@ class EventParser:
 
         if "http" in pkt and pkt["http"].method == "OK":
             self.end_time = pkt["frame"].time_relative
-            #self.show(pkt)
+            #self.log(pkt)
             return True
         else:
             return False
@@ -74,7 +82,7 @@ class EventParser:
                 and "ACK" in pkt["tcp"].flags):
                 self.stage = 3
                 self.end_time = pkt["frame"].time_relative
-                #self.show(pkt)
+                #self.log(pkt)
                 return True
 
         self.pktLoss += 1
@@ -103,7 +111,7 @@ class EventParser:
         if pkt["dns"].count_answers > 0:
             #print "get dns answer"
             self.end_time = pkt["frame"].time_relative
-            #self.show(pkt)
+            #self.log(pkt)
             return True
         else:
             return False
@@ -124,37 +132,38 @@ class EventParser:
             return self.composeDic[self.type](self, pkt)
         else:
             return False
-    def show(self, pkt):
-        #eventDetailLog.write("----------------")
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("event type: " + self.type)
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("frame_number: " + str(self.frame_number))
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("SRC: " + self.src + " DST: " + self.dst)
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("start_time: " + str(self.start_time) + "end_time: " + str(self.end_time))
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("packets involved: " + str(self.pktCnt))
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("packets loss: " + str(self.pktLoss))
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("bytes involved: " + str(self.byteCnt))
-        #eventDetailLog.write("\n")
-        #eventDetailLog.write("sum of all RTT: " + str(self.rttSum))
-        #eventDetailLog.write("\n")
+    def log(self):
+        self.eventLog.write("-------- Event --------")
+        self.eventLog.write("\n")
+        self.eventLog.write("event type: " + self.type)
+        self.eventLog.write("\n")
+        self.eventLog.write("frame_number: " + str(self.frame_number))
+        self.eventLog.write("\n")
+        self.eventLog.write("SRC: " + self.src + " DST: " + self.dst)
+        self.eventLog.write("\n")
+        self.eventLog.write("start_time: " + str(self.start_time) + "end_time: " + str(self.end_time))
+        self.eventLog.write("\n")
+        self.eventLog.write("packets involved: " + str(self.pktCnt))
+        self.eventLog.write("\n")
+        self.eventLog.write("packets loss: " + str(self.pktLoss))
+        self.eventLog.write("\n")
+        self.eventLog.write("bytes involved: " + str(self.byteCnt))
+        self.eventLog.write("\n")
+        self.eventLog.write("sum of all RTT: " + str(self.rttSum))
+        self.eventLog.write("\n")
 
-        print "----------------"
-        print "event type:", self.type
-        print "frame_number:", self.frame_number
-        print "SRC:", self.src, "DST:", self.dst
-        print "start_time:", self.start_time, "end_time:", self.end_time
-        print "packets involved:", self.pktCnt
-        print "packets loss:", self.pktLoss
-        print "bytes involved:", self.byteCnt
-        print "sum of all RTT:", self.rttSum
+        #print "------- Event ---------"
+        #print "event type:", self.type
+        #print "frame_number:", self.frame_number
+        #print "SRC:", self.src, "DST:", self.dst
+        #print "start_time:", self.start_time, "end_time:", self.end_time
+        #print "packets involved:", self.pktCnt
+        #print "packets loss:", self.pktLoss
+        #print "bytes involved:", self.byteCnt
+        #print "sum of all RTT:", self.rttSum
 
-    def __init__(self, pkt):
+    def __init__(self, pkt, eventLog):
+        self.eventLog = eventLog
         self.stage = 0
         self.pktLoss = 0
         self.pktCnt = 0
@@ -162,9 +171,6 @@ class EventParser:
         self.rttSum = 0
         if(("http" in pkt) and (pkt["http"].method == "GET")):
             self.type = "NewObj"
-            #global getCnt
-            #getCnt += 1
-            #print getCnt
         elif("tcp" in pkt and "SYN" in pkt["tcp"].flags):
             self.type = "OpenTCP"
         elif("dns" in pkt and "ip" in pkt):
@@ -285,6 +291,9 @@ class TcpParser:
         self.tcp_rtt = float(chd.attrib["show"])
         #print self.tcp_rtt
 
+    def _tcp_win(self, chd):
+        self.tcp_win = int(chd.attrib["show"])
+
     def _tcp_analysis(self, xmlObj):
         for chd in xmlObj:
             chdType = chd.attrib['name']
@@ -299,6 +308,7 @@ class TcpParser:
             'tcp.srcport': _tcp_srcport,
             'tcp.dstport': _tcp_dstport,
             'tcp.analysis': _tcp_analysis,
+            'tcp.window_size': _tcp_win,
             }
 
 
@@ -390,16 +400,22 @@ class PcapParser:
                 'http': HttpParser,
                 'dns': DnsParser,
                  }
-    def __init__(self, fileName):
+    def __init__(self, fileName, senario, web, summaryLog, eventLog):
         self.halfEventMap = {}
         self.fullEventQueue = []
         self.tree = ET.parse(fileName)
         self.root = self.tree.getroot()
-        self.xmlPktLs = []
-        self.pktLs = []
+        #self.xmlPktLs = []
+        #self.pktLs = []
+        self.senario = senario
+        self.web = web
+        self.summaryLog = summaryLog
+        self.eventLog = eventLog
+        self.start_time = 0.
+        self.end_time = 0.
         #print self.root.tag, self.root.attrib
-        for xmlPkt in self.root:
-            self.xmlPktLs.append(xmlPkt)
+        for idx, xmlPkt in enumerate(self.root):
+            #self.xmlPktLs.append(xmlPkt)
             pkt = {}
 
             #parse pkt information
@@ -409,19 +425,24 @@ class PcapParser:
                 if xmlObjType in self.parserDic:
                     pkt[xmlObjType] = self.parserDic[xmlObjType](xmlObj)
 
-            #create a new event or compose the pkt into an old event
+            if idx == 0:
+                self.start_time = pkt["frame"].time_relative
+            if idx == len(self.root) - 1:
+                self.end_time = pkt["frame"].time_relative
+
+            #create a new event for the pkt or compose the pkt into an old event
             iden = EventParser.getId(pkt)
             if iden in self.halfEventMap:
                 if self.halfEventMap[iden].compose(pkt):
-                    #self.halfEventMap[iden].show()
+                    self.halfEventMap[iden].log()
                     self.fullEventQueue.append(self.halfEventMap[iden])
                     del self.halfEventMap[iden]
             else:
-                event = EventParser(pkt)
+                event = EventParser(pkt, eventLog)
                 if event.type:
                     self.halfEventMap[iden] = event
 
-            self.pktLs.append(pkt)
+            #self.pktLs.append(pkt)
     def analyze(self):
         self.time = 0.
 
@@ -437,6 +458,16 @@ class PcapParser:
         self.dnsCnt = 0
         self.objCnt = 0
 
+        self.tcpFailCnt = 0
+        self.dnsFailCnt = 0
+        self.objFailCnt = 0
+
+
+        self.eventCnt = len(self.fullEventQueue)
+        self.failEventCnt = len(self.halfEventMap)
+
+        ipMap = {}
+        objTimeLs = []
         for event in self.fullEventQueue:
             period = event.end_time - event.start_time
             self.time += period
@@ -444,66 +475,73 @@ class PcapParser:
             self.pktCnt += event.pktCnt
             self.rttSum += event.rttSum
 
+
             if event.type == "OpenTCP":
                 self.tcpTime += period
                 self.tcpCnt += 1
             elif event.type == "NewObj":
+                objTimeLs.append(period)
                 self.objTime += period
                 self.objCnt += 1
+                if event.src not in ipMap:
+                    ipMap[event.dst] = 0
+                ipMap[event.dst] += 1
             elif event.type == "DNS":
                 self.dnsTime += period
                 self.dnsCnt += 1
+
+        self.varObjTime = np.var(objTimeLs)
+        self.avgObjTime = np.mean(objTimeLs)
+
+        self.diffSiteCnt = len(ipMap)
 
         for iden, event in self.halfEventMap.items():
             self.pktCnt += event.pktCnt
             self.pktLoss += event.pktCnt
             self.rttSum += event.rttSum
+            if event.type == "OpenTCP":
+                self.tcpFailCnt += 1
+            elif event.type == "NewObj":
+                self.objFailCnt += 1
+            elif event.type == "DNS":
+                self.dnsFailCnt += 1
 
-    def show(self):
-        self.summaryLog.write("----------------")
+    def log(self):
+        self.summaryLog.write("-------- Summary --------")
         self.summaryLog.write("\n")
         self.summaryLog.write("senario: "+ self.senario+ " web: "+ self.web)
         self.summaryLog.write("\n")
-        self.summaryLog.write("pktLoss: "+ str(self.pktLoss)+ " pktCnt:+"+ str(self.pktCnt))
+        self.eventLog.write("start_time: " + str(self.start_time) + "end_time: " + str(self.end_time))
+        self.summaryLog.write("\n")
+        self.summaryLog.write("pktLoss: "+ str(self.pktLoss)+ " pktCnt: "+ str(self.pktCnt))
         self.summaryLog.write("\n")
         self.summaryLog.write("tcpTime: "+ str(self.tcpTime)+ " objTime: "+ str(self.objTime) + " dnsTime: "+ str(self.dnsTime))
         self.summaryLog.write("\n")
+        self.summaryLog.write("avgObjTime: "+ str(self.avgObjTime) + " varObjTime: " + str(self.varObjTime))
+        self.summaryLog.write("\n")
+        self.summaryLog.write("eventCnt: "+ str(self.eventCnt))
+        self.summaryLog.write("\n")
         self.summaryLog.write("tcpCnt: "+ str(self.tcpCnt)+ " objCnt: "+ str(self.objCnt)+ " dnsCnt: "+ str(self.dnsCnt))
+        self.summaryLog.write("\n")
+        self.summaryLog.write("failEventCnt: "+ str(self.failEventCnt))
+        self.summaryLog.write("\n")
+        self.summaryLog.write("tcpFailCnt: "+ str(self.tcpFailCnt)+ " objFailCnt: "+ str(self.objFailCnt)+ " dnsFailCnt: "+ str(self.dnsFailCnt))
+        self.summaryLog.write("\n")
+        self.summaryLog.write("diffSiteCnt: "+ str(self.diffSiteCnt))
         self.summaryLog.write("\n")
         self.summaryLog.write("rttSum: "+ str(self.rttSum))
         self.summaryLog.write("\n")
 
-        #print "----------------"
-        #print "senario:", self.senario, "web:", self.web
-        #print "pktLoss:", self.pktLoss, "pktCnt:", self.pktCnt
-        #print "tcpTime:", self.tcpTime, "objTime:", self.objTime, "dnsTime", self.dnsTime
-        #print "tcpCnt:", self.tcpCnt, "objCnt:", self.objCnt, "dnsCnt", self.dnsCnt
-        #print "rttSum:", self.rttSum
-
-        #print len(self.halfEventMap)
-
-if __name__ == "__main__":
-    #psr = PcapParser("./xml/t-mobile_firefox_rakuten.co.jp_1329415410.54.xml")
-    xmlLs = os.listdir("./xml")
-    senarioMap = {}
-    log = open("log.txt", 'w')
-    for idx, xml in enumerate(xmlLs):
-        if xml.endswith("xml"):
-            print idx, xml
-            ls = xml.split("_")
-            senario = ls[0]+"_"+ls[1]
-            web = ls[2]
-            xml = "./xml/" + xml
-            psr = PcapParser(xml)
-            psr.senario = senario
-            psr.web = web
-            psr.summaryLog = log
-            psr.analyze()
-            psr.show()
-            if senario in senarioMap:
-                senarioMap[senarioMap].append((web, psr))
-
-    open("senarioMap.pk", 'w').write(pickle.dumps(senarioMap))
-            #print len(fullEventQueue), len(halfEventMap)
-
+        print "-------- Summary --------"
+        print "senario:", self.senario, "web:", self.web
+        print "start_time:", self.start_time, "end_time:", self.end_time
+        print "pktLoss:", self.pktLoss, "pktCnt:", self.pktCnt
+        print "tcpTime:", self.tcpTime, "objTime:", self.objTime, "dnsTime", self.dnsTime
+        print "avgObjTime:", self.avgObjTime, "varObjTime:", self.varObjTime
+        print "eventCnt:", self.eventCnt
+        print "tcpCnt:", self.tcpCnt, "objCnt:", self.objCnt, "dnsCnt:", self.dnsCnt
+        print "failEventCnt:", self.failEventCnt
+        print "tcpFailCnt:", self.tcpFailCnt, "objFailCnt:", self.objFailCnt, "dnsFailCnt:", self.dnsFailCnt
+        print "rttSum:", self.rttSum
+        print "diffSiteCnt:", self.diffSiteCnt
 
